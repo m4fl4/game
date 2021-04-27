@@ -1,12 +1,14 @@
 class OpcaoJogadaTreis {
     tipo;
     dados;
-    total
+    total;
+    controle;
 
     constructor() {
         this.tipo = "3";
         this.dados = [];
         this.total = 0;
+        this.controle = 0;
     }
 
     getTipo() {
@@ -27,6 +29,13 @@ class OpcaoJogadaTreis {
         return this.total;
     }
 
+    setControle(controle) {
+        this.controle = controle;
+    }
+    getControle() {
+        return this.controle;
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 3) {
@@ -34,6 +43,7 @@ class OpcaoJogadaTreis {
                 this.total += d.getNumero();
             }
         })
+        this.controle++;
     }
 }
 

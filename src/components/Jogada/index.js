@@ -18,11 +18,10 @@ function Jogada(props) {
         setJogada(j);
         if(j.getTurno() == 3) {
             setStatusJogada(1);
+            opcoes();
         }
     }
 
-    
-    
     function salvarDado(id) {
         let j = new JogadaModel();
         j.setDados(jogada.getDados());
@@ -40,7 +39,66 @@ function Jogada(props) {
         setJogada(j);
     }
 
-    function missao() {
+    function missao(tipo,total) {
+        if(tipo == "1") {
+            if(props.missao.getUm() == 0) {
+                props.missao.setUm(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "2") {
+            if(props.missao.getDois() == 0) {
+                props.missao.setDois(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "3") {
+            if(props.missao.getTreis() == 0) {
+                props.missao.setTreis(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "4") {
+            if(props.missao.getQuatro() == 0) {
+                props.missao.setQuatro(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "5") {
+            if(props.missao.getCinco() == 0) {
+                props.missao.setCinco(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "6") {
+            if(props.missao.getSeis() == 0) {
+                props.missao.setSeis(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "seguida") {
+            if(props.missao.getSeguida() == 0) {
+                props.missao.setSeguida(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "trinca") {
+            if(props.missao.getTrinca() == 0) {
+                props.missao.setTrinca(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "quadra") {
+            if(props.missao.getQuadra() == 0) {
+                props.missao.setQuadra(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "full-house") {
+            if(props.missao.getFullHouse() == 0) {
+                props.missao.setFullHouse(total);
+                props.setMissao(props.missao);
+            }
+        } else if(tipo == "general") {
+            if(props.missao.getGeneral() == 0) {
+                props.missao.setGeneral(total);
+                props.setMissao(props.missao);
+            }
+        }
+        setStatusJogada(0);
+        setJogada(new JogadaModel());
+        setOpcoesSalvar([]);
     }
 
     function opcoes() {
@@ -48,40 +106,42 @@ function Jogada(props) {
         let dados = jogada.getDados();
         let opcoes = [];
         let aux = [];
-
+        
         dados.map(d => {
             aux.push(d.getNumero());
         })
-
-        aux.map(num => {
-            if(num == 1) {
-                let opcaoUm = opcaoJogadaFactory.createOpcao("1");
-                opcaoUm.filtro(dados);
-                opcoes.push(opcaoUm);
-            } else if(num == 2) {
-                let opcaoDois = opcaoJogadaFactory.createOpcao("2");
-                opcaoDois.filtro(dados);
-                opcoes.push(opcaoDois);
-            } else if(num == 3) {
-                let opcaoTres = opcaoJogadaFactory.createOpcao("3");
-                opcaoTres.filtro(dados);
-                opcoes.push(opcaoTres);
-            } else if(num == 4) {
-                let opcaoQuatro = opcaoJogadaFactory.createOpcao("4");
-                opcaoQuatro.filtro(dados);
-                opcoes.push(opcaoQuatro);
-            } else if(num == 5) {
-                let opcaoCinco = opcaoJogadaFactory.createOpcao("5");
-                opcaoCinco.filtro(dados);
-                opcoes.push(opcaoCinco);
-            } else if(num == 6) {
-                let opcaoSeis = opcaoJogadaFactory.createOpcao("6");
-                opcaoSeis.filtro(dados);
-                opcoes.push(opcaoSeis);
-            }
-
-        })
         
+        function controleOpcao(opcao,dados) {
+            if(opcao.getControle() == 0) {
+                opcao.filtro(dados);
+                opcoes.push(opcao);
+            }
+        }
+        
+        let opcaoUm = opcaoJogadaFactory.createOpcao("1");
+        let opcaoDois = opcaoJogadaFactory.createOpcao("2");
+        let opcaoTres = opcaoJogadaFactory.createOpcao("3");
+        let opcaoQuatro = opcaoJogadaFactory.createOpcao("4");
+        let opcaoCinco = opcaoJogadaFactory.createOpcao("5");
+        let opcaoSeis = opcaoJogadaFactory.createOpcao("6");
+        let opcaoSeguida = opcaoJogadaFactory.createOpcao("seguida");
+        let opcaoTrinca = opcaoJogadaFactory.createOpcao("trinca");
+        let opcaoQuadra = opcaoJogadaFactory.createOpcao("quadra");
+        let opcaoFullHouse = opcaoJogadaFactory.createOpcao("full-house");
+        let opcaoGeneral = opcaoJogadaFactory.createOpcao("general");
+       
+        controleOpcao(opcaoUm,dados);
+        controleOpcao(opcaoDois,dados);
+        controleOpcao(opcaoTres,dados);
+        controleOpcao(opcaoQuatro,dados);
+        controleOpcao(opcaoCinco,dados);
+        controleOpcao(opcaoSeis,dados);
+        controleOpcao(opcaoSeguida, dados);
+        controleOpcao(opcaoTrinca, dados);
+        controleOpcao(opcaoQuadra, dados);
+        controleOpcao(opcaoFullHouse, dados);
+        controleOpcao(opcaoGeneral, dados);
+
         setOpcoesSalvar(opcoes);
     }
 
@@ -89,39 +149,54 @@ function Jogada(props) {
         {!!statusJogada == 0 && ( <>
             <button
                 onClick={jogar}
-                className="btn btn-success mb-3 mr-5"
-            >
+                className="btn btn-success mb-3 w-25"
+                >
                 Jogar
             </button>
-            {jogada.getDados().map(d => ( <>
-            <div className="ml-2" onClick={() => salvarDado(d.getId())}>
-                <Dado dado={d} />
+            <div className="d-flex flex-row mb-3">
+                {jogada.getDados().map(d => ( <>
+                    <div className="ml-2" onClick={() => salvarDado(d.getId())}>
+                        <Dado dado={d} />
+                    </div>
+                </>))}
             </div>
-            </>))}
-            <div className="alert alert-primary ml-3">
-               Turno: { jogada.getTurno() }        
+            <div className="alert alert-primary w-25">
+                Turno: { jogada.getTurno() }        
             </div>
         </>)}
         {!!statusJogada == 1 && ( <>
-            <button
-                onClick={opcoes}
-                className="btn btn-danger mb-3 mr-5"
-            >
-                Finalizar
-            </button>
-            {!!opcoesSalvar.length && (<>
-                {opcoesSalvar.map(op => (<>
-                    <span>{op.getTipo()}</span>
+            <div className="d-flex flex-row mb-3">
+                {jogada.getDados().map(d => ( <>
+                    <span className="ml-2 text-success">
+                        <Dado dado={d} />
+                    </span>
                 </>))}
+            </div>
+            <div className="alert alert-danger w-25">
+                Fim da jogada!       
+            </div>
+            {!!opcoesSalvar.length && (<>
+                <div className="card bg-gray-200 w-50">
+                    <div className="card-body">
+                        {opcoesSalvar.map(op => (<>
+                            <div className="d-flex flex-column">
+                                <span><b>{op.getTipo()}</b></span>
+                                <span>TOTAL: {op.getTotal()}</span>
+                                {props.missao.get}
+                                <button onClick={() => missao(op.getTipo(),op.getTotal())}>a</button>
+                            </div>
+                            <div className="d-flex flex-row">
+                                {op.getDados().map(d => (<>
+                                    <div className="ml-1 text-success">
+                                        <Dado dado={d} />
+                                    </div>
+                                </>))}
+                            </div>
+                            <hr />
+                        </>))}
+                    </div>
+                </div>
             </>)}
-            {jogada.getDados().map(d => ( <>
-            <span className="ml-2 text-success">
-                <Dado dado={d} />
-            </span>
-            </>))}
-            <div className="alert alert-danger ml-3">
-               Fim da jogada!       
-            </div>        
         </>)}
     </>)
 }
