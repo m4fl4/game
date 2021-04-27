@@ -13,11 +13,7 @@ function Jogada(props) {
         let j = new JogadaModel();
         j.setDados(jogada.getDados());
         j.setTurno(jogada.getTurno());
-
-        if(j.getTurno() == 0) {
-            j.preencheDados();
-        }
-
+        j.preencheDados();
         j.jogar();
         setJogada(j);
         if(j.getTurno() == 3) {

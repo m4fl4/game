@@ -39,11 +39,13 @@ class Jogada {
     }
 
     preencheDados() {
-        for(let i=0; i<5; i++) {
-            let d = new Dado();
-            d.setId(i+1);
-            d.setStatus(0);
-            this.dados.push(d);
+        if(this.turno == 0) {
+            for(let i=0; i<5; i++) {
+                let d = new Dado();
+                d.setId(i+1);
+                d.setStatus(0);
+                this.dados.push(d);
+            }
         }
     }
 }
