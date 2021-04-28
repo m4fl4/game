@@ -1,105 +1,63 @@
+import opcaoJogadaFactory from './OpcoesJogada/OpcaoJogadaFactory';
+
 class Missao {
-    um;
-    dois;
-    treis;
-    quatro;
-    cinco;
-    seis;
-    seguida;
-    fullHouse;
-    trinca;
-    quadra;
-    general;
+    opcoes;
+    pontuacao;
 
     constructor() {
-        this.um = 0;
-        this.dois = 0;
-        this.treis = 0;
-        this.quatro = 0;
-        this.cinco = 0;
-        this.seis = 0;
-        this.seguida = 0;
-        this.fullHouse = 0;
-        this.trinca = 0;
-        this.quadra = 0;
-        this.general = 0;
+        let opcaoFactory = new opcaoJogadaFactory();
+        this.opcoes = [
+            opcaoFactory.createOpcao("1"),
+            opcaoFactory.createOpcao("2"),
+            opcaoFactory.createOpcao("3"),
+            opcaoFactory.createOpcao("4"),
+            opcaoFactory.createOpcao("5"),
+            opcaoFactory.createOpcao("6"),
+            opcaoFactory.createOpcao("trinca"),
+            opcaoFactory.createOpcao("seguida"),
+            opcaoFactory.createOpcao("quadra"),
+            opcaoFactory.createOpcao("full-house"),
+            opcaoFactory.createOpcao("general"),
+        ];
+        this.pontuacao = 0;
+    }
+    
+    setOpcoes(opcoes) {
+        this.opcoes = opcoes;
+    }
+    getOpcoes() {
+        return this.opcoes;
     }
 
-    setUm(um) {
-        this.um = um;
-    }
-    getUm() {
-        return this.um;
+    getPontuacao() {
+        return this.pontuacao;
     }
 
-    setDois(dois) {
-        this.dois = dois;
-    }
-    getDois() {
-        return this.dois;
-    }
-
-    setTreis(treis) {
-        this.treis = treis;
-    }
-    getTreis() {
-        return this.treis;
-    }
-
-    setQuatro(quatro) {
-        this.quatro = quatro;
-    }
-    getQuatro() {
-        return this.quatro;
-    }
-
-    setCinco(cinco) {
-        this.cinco = cinco;
-    }
-    getCinco() {
-        return this.cinco;
-    }
-
-    setSeis(seis) {
-        this.seis = seis;
-    }
-    getSeis() {
-        return this.seis;
-    }
-
-    setSeguida(seguida) {
-        this.seguida = seguida;
-    }
-    getSeguida() {
-        return this.seguida;
-    }
-
-    setFullHouse(fullHouse) {
-        this.fullHouse = fullHouse;
-    }
-    getFullHouse() {
-        return this.fullHouse;
-    }
-
-    setTrinca(trinca) {
-        this.trinca = trinca;
-    }
-    getTrinca() {
-        return this.trinca;
-    }
-
-    setQuadra(quadra) {
-        this.quadra = quadra;
-    }
-    getQuadra() {
-        return this.quadra;
-    }
-
-    setGeneral(general) {
-        this.general = general;
-    }
-    getGeneral() {
-        return this.general;
+    calculaPontuacao() {
+        this.opcoes.map(op => {
+            if( op.getTipo() == "1" ||
+                op.getTipo() == "2" ||
+                op.getTipo() == "3" ||
+                op.getTipo() == "4" ||
+                op.getTipo() == "5" ||
+                op.getTipo() == "6"
+                ) 
+            {
+                this.pontuacao += op.getTotal()
+            } else {
+                if(op.getTipo() == "trinca" && op.getTotal() == 1) {
+                    this.pontuacao += 20;
+                } else if(op.getTipo() == "seguida" && op.getTotal() == 1) {
+                    this.pontuacao += 30;
+                } else if(op.getTipo() == "full-house" && op.getTotal() == 1) {
+                    this.pontuacao += 40;
+                } else if(op.getTipo() == "quadra" && op.getTotal() == 1) {
+                    this.pontuacao += 50;
+                } else if(op.getTipo() == "general" && op.getTotal() == 1) {
+                    this.pontuacao += 100;
+                }
+            }
+        })
     }
 }
 

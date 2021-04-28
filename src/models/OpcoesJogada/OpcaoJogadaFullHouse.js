@@ -36,6 +36,12 @@ class OpcaoJogadaFullHouse {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[9].getTotal() == 0) {
+            missao.getOpcoes()[9].setTotal(this.total);
+        }
+    }
+
     bubbleSort(array) {
         let len = array.length;
         for(let i=0; i<len; i++) {

@@ -1,5 +1,4 @@
 class Dado {
-
     id;
     status;
     numero;

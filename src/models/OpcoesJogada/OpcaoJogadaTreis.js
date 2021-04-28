@@ -36,6 +36,12 @@ class OpcaoJogadaTreis {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[2].getTotal() == 0) {
+            missao.getOpcoes()[2].setTotal(this.total);
+        }
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 3) {

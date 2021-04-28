@@ -36,6 +36,12 @@ class OpcaoJogadaUm {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[0].getTotal() == 0) {
+            missao.getOpcoes()[0].setTotal(this.total);
+        }
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 1) {

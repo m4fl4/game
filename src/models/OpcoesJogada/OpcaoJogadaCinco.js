@@ -36,6 +36,12 @@ class OpcaoJogadaCinco {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[4].getTotal() == 0) {
+            missao.getOpcoes()[4].setTotal(this.total);
+        }
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 5) {

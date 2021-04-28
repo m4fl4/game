@@ -36,6 +36,12 @@ class OpcaoJogadaQuatro {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[3].getTotal() == 0) {
+            missao.getOpcoes()[3].setTotal(this.total);
+        }
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 4) {

@@ -18,8 +18,8 @@ function Jogada(props) {
         setJogada(j);
         if(j.getTurno() == 3) {
             setStatusJogada(1);
-            opcoes();
         }
+        opcoes();
     }
 
     function salvarDado(id) {
@@ -39,77 +39,38 @@ function Jogada(props) {
         setJogada(j);
     }
 
-    function missao(tipo,total) {
-        if(tipo == "1") {
-            if(props.missao.getUm() == 0) {
-                props.missao.setUm(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "2") {
-            if(props.missao.getDois() == 0) {
-                props.missao.setDois(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "3") {
-            if(props.missao.getTreis() == 0) {
-                props.missao.setTreis(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "4") {
-            if(props.missao.getQuatro() == 0) {
-                props.missao.setQuatro(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "5") {
-            if(props.missao.getCinco() == 0) {
-                props.missao.setCinco(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "6") {
-            if(props.missao.getSeis() == 0) {
-                props.missao.setSeis(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "seguida") {
-            if(props.missao.getSeguida() == 0) {
-                props.missao.setSeguida(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "trinca") {
-            if(props.missao.getTrinca() == 0) {
-                props.missao.setTrinca(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "quadra") {
-            if(props.missao.getQuadra() == 0) {
-                props.missao.setQuadra(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "full-house") {
-            if(props.missao.getFullHouse() == 0) {
-                props.missao.setFullHouse(total);
-                props.setMissao(props.missao);
-            }
-        } else if(tipo == "general") {
-            if(props.missao.getGeneral() == 0) {
-                props.missao.setGeneral(total);
-                props.setMissao(props.missao);
-            }
-        }
+    function limpaJogada() {
         setStatusJogada(0);
         setJogada(new JogadaModel());
         setOpcoesSalvar([]);
+    }
+
+    function missao(op) {
+        op.atualizaMissao(props.partida.getTurno().getAtual().getMissao());
+        props.partida.getTurno().getAtual().getMissao().calculaPontuacao();
+        props.setPartida(props.partida);
+        limpaJogada();
+    }
+
+    function tora(op) {
+        op.setTotal(-1)
+        missao(op);
+    }
+
+    function verificaOpcao(op) {
+        let check = false;
+        props.partida.getTurno().getAtual().getMissao().getOpcoes().map(o => {
+            if(o.getTipo() == op.getTipo() && o.getTotal() != 0) {
+                check = true;
+            }
+        })
+        return check;
     }
 
     function opcoes() {
         let opcaoJogadaFactory = new OpcaoJogadaFactory();
         let dados = jogada.getDados();
         let opcoes = [];
-        let aux = [];
-        
-        dados.map(d => {
-            aux.push(d.getNumero());
-        })
         
         function controleOpcao(opcao,dados) {
             if(opcao.getControle() == 0) {
@@ -179,20 +140,24 @@ function Jogada(props) {
                 <div className="card bg-gray-200 w-50">
                     <div className="card-body">
                         {opcoesSalvar.map(op => (<>
-                            <div className="d-flex flex-column">
-                                <span><b>{op.getTipo()}</b></span>
-                                <span>TOTAL: {op.getTotal()}</span>
-                                {props.missao.get}
-                                <button onClick={() => missao(op.getTipo(),op.getTotal())}>a</button>
-                            </div>
-                            <div className="d-flex flex-row">
-                                {op.getDados().map(d => (<>
-                                    <div className="ml-1 text-success">
-                                        <Dado dado={d} />
-                                    </div>
-                                </>))}
-                            </div>
-                            <hr />
+                            {!verificaOpcao(op) && (<>
+                                <div className="d-flex flex-column">
+                                    <span><b>{op.getTipo()}</b></span>
+                                    <span>TOTAL: {op.getTotal()}</span>
+                                        {op.getTotal() != 0 && (<>
+                                            <button className="mb-2 btn btn-success w-25" onClick={() => missao(op)}>Seleciona</button>
+                                        </>)}
+                                        <button className="mb-2 btn btn-danger w-25" onClick={() => tora(op)}>Tora</button>
+                                </div>
+                                <div className="d-flex flex-row">
+                                    {op.getDados().map(d => (<>
+                                        <div className="ml-1 text-success">
+                                            <Dado dado={d} />
+                                        </div>
+                                    </>))}
+                                </div>
+                                <hr />
+                            </>)}
                         </>))}
                     </div>
                 </div>

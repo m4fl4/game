@@ -36,6 +36,12 @@ class OpcaoJogadaSeis {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[5].getTotal() == 0) {
+            missao.getOpcoes()[5].setTotal(this.total);
+        }
+    }
+
     filtro(array) {
         array.map(d => {
             if(d.getNumero() == 6) {

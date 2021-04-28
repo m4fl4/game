@@ -36,6 +36,12 @@ class OpcaoJogadaSeguida {
         return this.controle;
     }
 
+    atualizaMissao(missao) {
+        if(missao.getOpcoes()[7].getTotal() == 0) {
+            missao.getOpcoes()[7].setTotal(this.total);
+        }
+    }
+
     bubbleSort(array) {
         let len = array.length;
         for(let i=0; i<len; i++) {

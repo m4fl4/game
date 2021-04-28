@@ -1,7 +1,23 @@
+import Missao from '../models/Missao';
+
 class Player {
-    
+    id;
     nome;
     cor;
+    missao;
+
+    constructor() {
+        this.nome = "";
+        this.cor = "";
+        this.missao = new Missao();
+    }
+
+    setId(id) {
+        this.id = id;
+    }
+    getId() {
+        return this.id;
+    }
 
     setNome(nome) {
         this.nome = nome;
@@ -15,6 +31,13 @@ class Player {
     }
     getCor() {
         return this.cor;
+    }
+
+    setMissao(missao) {
+        this.missao = missao;
+    }
+    getMissao() {
+        return this.missao;
     }
 }
 
