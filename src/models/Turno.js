@@ -21,13 +21,9 @@ class Turno {
         return this.total;
     }
 
-    inicioRandom(players) {
-        let random = Math.round(Math.random());
-        if(random == 0) {
-            this.atual = players[0];
-        } else {
-            this.atual = players[1];
-        }
+    inicioRandom(players, num) {
+        let random = Math.round(Math.random() * num);
+            this.atual = players[random];
     }
 }
 

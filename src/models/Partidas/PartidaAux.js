@@ -1,17 +1,18 @@
-import Player from '../../models/Player';
-import Turno from '../../models/Turno';
+import Player from '../Player';
+import Turno from '../Turno';
 
-class PartidaDefault {
+class PartidaAux {
     id;
     tipo;
     players;
     turno;
 
     constructor() {
-        this.tipo = "default";
-        this.players = [new Player(), new Player()];
-        this.players[0].setCor("Azul");
-        this.players[1].setCor("Vermelho");
+        this.tipo = "aux";
+        this.players = [new Player(), new Player(), new Player()];
+        this.players[0].setCor("Roxo");
+        this.players[1].setCor("Rosa");
+        this.players[2].setCor("Preto")
         this.turno = new Turno();
         this.turno.inicioRandom(this.players, this.players.length);
     }
@@ -42,4 +43,4 @@ class PartidaDefault {
     }
 }
 
-export default PartidaDefault;
+export default PartidaAux;

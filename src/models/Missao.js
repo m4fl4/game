@@ -34,6 +34,7 @@ class Missao {
     }
 
     calculaPontuacao() {
+        let pont = 0;
         this.opcoes.map(op => {
             if( op.getTipo() == "1" ||
                 op.getTipo() == "2" ||
@@ -43,21 +44,22 @@ class Missao {
                 op.getTipo() == "6"
                 ) 
             {
-                this.pontuacao += op.getTotal()
+                pont += op.getTotal()
             } else {
                 if(op.getTipo() == "trinca" && op.getTotal() == 1) {
-                    this.pontuacao += 20;
+                    pont += 20;
                 } else if(op.getTipo() == "seguida" && op.getTotal() == 1) {
-                    this.pontuacao += 30;
+                    pont += 30;
                 } else if(op.getTipo() == "full-house" && op.getTotal() == 1) {
-                    this.pontuacao += 40;
+                    pont += 40;
                 } else if(op.getTipo() == "quadra" && op.getTotal() == 1) {
-                    this.pontuacao += 50;
+                    pont += 50;
                 } else if(op.getTipo() == "general" && op.getTotal() == 1) {
-                    this.pontuacao += 100;
+                    pont += 100;
                 }
             }
         })
+        this.pontuacao = pont;
     }
 }
 
