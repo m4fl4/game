@@ -75,7 +75,7 @@ class OpcaoJogadaGeneral {
                     valor3 == valor4 && 
                     valor4 == valor5
                 ) {
-                    this.total = 1;
+                    this.total = 100;
                     check = 1;
                 }
             }   

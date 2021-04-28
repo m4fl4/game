@@ -1,16 +1,20 @@
-import PartidaDefault from '../Partidas/PartidaDefault';
-import PartidaAux from '../Partidas/PartidaAux';
+import Partida2P from '../Partidas/Partida2P';
+import Partida4P from './Partida4P';
+import Partida8P from './Partida8P';
 
 class PartidaFactory {
     
     createPartida(tipo) {
         let partida = null;
         switch (tipo) {
-            case "default":
-                partida = new PartidaDefault();
+            case "2P":
+                partida = new Partida2P();
                 break;
-            case "aux":
-                partida = new PartidaAux();
+            case "4P":
+                partida = new Partida4P();
+                break;
+            case "8P":
+                partida = new Partida8P();
                 break;
             default:
                 break;

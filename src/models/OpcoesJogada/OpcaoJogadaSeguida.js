@@ -68,7 +68,7 @@ class OpcaoJogadaSeguida {
         }
         if(!check) {
             this.dados = array;
-            this.total = 1;
+            this.total = 30;
         } else {
             this.total = 0;
         }

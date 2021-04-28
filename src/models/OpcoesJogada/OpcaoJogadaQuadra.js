@@ -69,7 +69,7 @@ class OpcaoJogadaQuadra {
                 let valor3 = array[j+2].getNumero();
                 let valor4 = array[j+3].getNumero();
                 if(valor1 == valor2 && valor2 == valor3 && valor3 == valor4) {
-                    this.total = 1;
+                    this.total = 50;
                     check = 1;
                 }
             }   

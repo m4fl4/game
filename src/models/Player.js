@@ -1,4 +1,5 @@
 import Missao from '../models/Missao';
+import { v4 as uuidv4 } from 'uuid';
 
 class Player {
     id;
@@ -7,14 +8,12 @@ class Player {
     missao;
 
     constructor() {
+        this.id = uuidv4();
         this.nome = "";
         this.cor = "";
         this.missao = new Missao();
     }
 
-    setId(id) {
-        this.id = id;
-    }
     getId() {
         return this.id;
     }

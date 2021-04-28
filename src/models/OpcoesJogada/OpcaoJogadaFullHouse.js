@@ -80,7 +80,7 @@ class OpcaoJogadaFullHouse {
                             valor4 == valor5 &&
                             valor3 != valor2
                         ) {
-                    this.total = 1;
+                    this.total = 60;
                     check = 1;            
                 }
             }   

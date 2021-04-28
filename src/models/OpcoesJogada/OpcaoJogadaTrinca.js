@@ -68,7 +68,7 @@ class OpcaoJogadaTrinca {
                 let valor2 = array[j+1].getNumero();
                 let valor3 = array[j+2].getNumero();
                 if(valor1 == valor2 && valor2 == valor3) {
-                    this.total = 1;
+                    this.total = 20;
                     check = 1;
                 }
             }   

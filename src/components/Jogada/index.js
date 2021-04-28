@@ -48,6 +48,7 @@ function Jogada(props) {
     function missao(op) {
         op.atualizaMissao(props.partida.getTurno().getAtual().getMissao());
         props.partida.getTurno().getAtual().getMissao().calculaPontuacao();
+        props.partida.getTurno().mudaTurno();
         props.p(props.partida);
         limpaJogada();
     }

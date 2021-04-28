@@ -1,10 +1,10 @@
 import React from 'react'
-import Partida from '../../components/Partida';
+import Start from '../../components/Start';
 
 function Home(props) {
     
     return (<>
-        <Partida />
+        <Start />
     </>)
 }
 

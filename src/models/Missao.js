@@ -36,28 +36,7 @@ class Missao {
     calculaPontuacao() {
         let pont = 0;
         this.opcoes.map(op => {
-            if( op.getTipo() == "1" ||
-                op.getTipo() == "2" ||
-                op.getTipo() == "3" ||
-                op.getTipo() == "4" ||
-                op.getTipo() == "5" ||
-                op.getTipo() == "6"
-                ) 
-            {
-                pont += op.getTotal()
-            } else {
-                if(op.getTipo() == "trinca" && op.getTotal() == 1) {
-                    pont += 20;
-                } else if(op.getTipo() == "seguida" && op.getTotal() == 1) {
-                    pont += 30;
-                } else if(op.getTipo() == "full-house" && op.getTotal() == 1) {
-                    pont += 40;
-                } else if(op.getTipo() == "quadra" && op.getTotal() == 1) {
-                    pont += 50;
-                } else if(op.getTipo() == "general" && op.getTotal() == 1) {
-                    pont += 100;
-                }
-            }
+            pont += op.getTotal();
         })
         this.pontuacao = pont;
     }
