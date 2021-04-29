@@ -6,21 +6,17 @@ import PartidaFactory from '../../models/Partidas/PartidaFactory';
 
 function Partida(props) {
     
-    const [ partida, setPartida ] = useState(props.partida)
-    const [ aux, setAux ] = useState(new PartidaFactory().createPartida(props.partida.getTipo()));
+    let [ partida, setPartida ] = useState(props.partida)
     
     useEffect(() => {
-        attPartida();
-    }, [] )
-
-    function attPartida() {
-        setInterval(() => {
-            setAux(new PartidaFactory().createPartida(props.partida));
-            setAux(partida);
-            setPartida(aux);    
-        }, 1000)
-    }
+        attPartida(partida);
+    }, [partida] )
     
+    function attPartida(partida) {
+        const aux = new PartidaFactory().createPartida(props.partida.getTipo());
+        setPartida(Object.assign(aux, partida));
+    }
+
     if(partida.getTurno().verificaFinal() === 1) {
         return ( 
             <Redirect to={ { pathname: `/FinalPartida/`, state: { from: props.location, partida: partida} } } />
@@ -55,7 +51,7 @@ function Partida(props) {
                 {partida.getTurno().verificaFinal() !== 1 && (<>
                     <Jogada 
                         partida={partida} 
-                        p={() => setPartida}
+                        setPartida={setPartida}
                     />
                 </>)}
             </div>
