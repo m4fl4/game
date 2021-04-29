@@ -73,7 +73,7 @@ class OpcaoJogadaFullHouse {
                     valor2 == valor3 && 
                     valor4 == valor5 && 
                     valor4 != valor3) {
-                    this.total = 1;
+                    this.total = 60;
                     check = 1;
                 } else if(  valor1 == valor2 && 
                             valor3 == valor4 && 

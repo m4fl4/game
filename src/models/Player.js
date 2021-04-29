@@ -10,7 +10,7 @@ class Player {
     constructor() {
         this.id = uuidv4();
         this.nome = "";
-        this.cor = "";
+        this.cor = this.id;
         this.missao = new Missao();
     }
 

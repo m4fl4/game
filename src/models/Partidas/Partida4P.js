@@ -17,7 +17,7 @@ class Partida4P {
         this.turno = new Turno();
         this.turno.setPlayers(this.players);
         this.turno.inicioRandom(this.players);
-        this.turno.total[0] = 42;
+        this.getTurno().geraTurnos();
     }
 
     setId(id) {
@@ -44,7 +44,7 @@ class Partida4P {
     getTurno() {
         return this.turno;
     }
-
+    
     bubbleSort(array) {
         let len = array.length;
         for(let i=0; i<len; i++) {
@@ -61,21 +61,10 @@ class Partida4P {
         return array;
     }
 
-    estatistica() {
-
+    vencedor() {
         this.setPlayers(this.getTurno().getPlayers());
-        
         let playersOrdenados = this.bubbleSort(this.getPlayers());
-        
-        let est = [null,null];
-
-        if(this.getTurno().getTotal()[0] == this.getTurno().getTotal()[1]) {
-            est[0] = 1;
-        }
-
-        est[1] = playersOrdenados[playersOrdenados.length-1]
-
-        return est;
+        return playersOrdenados[playersOrdenados.length-1];
     }
 }
 

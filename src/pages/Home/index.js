@@ -1,10 +1,11 @@
 import React from 'react'
-import Start from '../../components/Start';
+import IniciarPartida from '../../components/IniciarPartida';
+import { Redirect } from 'react-router-dom';
 
 function Home(props) {
     
     return (<>
-        <Start />
+        <Redirect to={'/IniciarPartida'} />
     </>)
 }
 

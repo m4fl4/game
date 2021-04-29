@@ -1,6 +1,7 @@
 import Partida2P from '../Partidas/Partida2P';
 import Partida4P from './Partida4P';
 import Partida8P from './Partida8P';
+import PartidaCustom from './PartidaCustom';
 import PartidaTeste from './PartidaTeste';
 
 class PartidaFactory {
@@ -10,6 +11,9 @@ class PartidaFactory {
         switch (tipo) {
             case "teste":
                 partida = new PartidaTeste();
+                break;
+            case "custom":
+                partida = new PartidaCustom();
                 break;
             case "2P":
                 partida = new Partida2P();

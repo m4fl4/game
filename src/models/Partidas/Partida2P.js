@@ -9,13 +9,13 @@ class Partida2P {
 
     constructor() {
         this.tipo = "2P";
-        this.players = [new Player(), new Player()];
+        this.setPlayers([new Player(), new Player()]);
         this.players[0].setCor("Azul");
         this.players[1].setCor("Vermelho");
-        this.turno = new Turno();
-        this.turno.setPlayers(this.players);
-        this.turno.inicioRandom(this.players);
-        this.turno.total[0] = 21;
+        this.setTurno( new Turno() );
+        this.getTurno().setPlayers(this.players);
+        this.getTurno().inicioRandom(this.players);
+        this.getTurno().geraTurnos();
     }
 
     setId(id) {
@@ -59,21 +59,17 @@ class Partida2P {
         return array;
     }
 
-    estatistica() {
-
+    vencedor() {
         this.setPlayers(this.getTurno().getPlayers());
-        
-        let playersOrdenados = this.bubbleSort(this.getPlayers());
-        
-        let est = [null,null];
-
-        if(this.getTurno().getTotal()[0] == this.getTurno().getTotal()[1]) {
-            est[0] = 1;
+        let pontPlayer1 = this.players[0].getMissao().getPontuacao();
+        let pontPlayer2 = this.players[1].getMissao().getPontuacao();
+        let vencedor = null;
+        if(pontPlayer1 > pontPlayer2) {
+            vencedor = this.players[0];
+        } else if(pontPlayer2 > pontPlayer1) {
+            vencedor = this.players[1];
         }
-
-        est[1] = playersOrdenados[playersOrdenados.length-1]
-
-        return est;
+        return vencedor;
     } 
 }
 

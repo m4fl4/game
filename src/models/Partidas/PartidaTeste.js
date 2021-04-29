@@ -9,13 +9,15 @@ class PartidaTeste {
 
     constructor() {
         this.tipo = "teste";
-        this.players = [new Player(), new Player()];
-        this.players[0].setCor("Azul");
-        this.players[1].setCor("Vermelho");
+        this.players = [new Player(),new Player(),new Player(),new Player()];
+        this.players[0].setCor("a");
+        this.players[1].setCor("b");
+        this.players[2].setCor("c");
+        this.players[3].setCor("d");
         this.turno = new Turno();
         this.turno.setPlayers(this.players);
         this.turno.inicioRandom(this.players);
-        this.turno.total[0] = 4;
+        this.turno.geraTurnos();
     }
 
     setId(id) {
@@ -43,6 +45,10 @@ class PartidaTeste {
         return this.turno;
     }
 
+    geraTurnos() {
+        this.turno.total[0] = (this.getPlayers().length * 11);
+    }
+
     bubbleSort(array) {
         let len = array.length;
         for(let i=0; i<len; i++) {
@@ -59,21 +65,10 @@ class PartidaTeste {
         return array;
     }
 
-    estatistica() {
-
+    vencedor() {
         this.setPlayers(this.getTurno().getPlayers());
-        
         let playersOrdenados = this.bubbleSort(this.getPlayers());
-        
-        let est = [null,null];
-
-        if(this.getTurno().getTotal()[0] == this.getTurno().getTotal()[1]) {
-            est[0] = 1;
-        }
-
-        est[1] = playersOrdenados[playersOrdenados.length-1]
-
-        return est;
+        return playersOrdenados[playersOrdenados.length-1];
     }
 }
 

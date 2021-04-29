@@ -6,7 +6,7 @@ class Turno {
     constructor() {
         this.players = [];
         this.atual = null;
-        this.total = [0,0];
+        this.total = [0,1];
     }
 
     setAtual(atual) {
@@ -30,13 +30,24 @@ class Turno {
         return this.players;
     }
 
+    geraTurnos() {
+        this.total[0] = (this.getPlayers().length * 11);
+    }
+
+
+    verificaFinal() {
+        if(this.getTotal()[1] > this.getTotal()[0]) {
+            return 1;
+        }
+    }
+
     inicioRandom(players) {
         let random = Math.round(Math.random() * players.length);
         this.atual = players[random];
     }
 
     mudaTurno() {
-        if(this.total[1] < this.total[0] ) {
+        if(this.total[1] <= this.total[0] ) {
             let len = this.players.length;
             for(let i=0; i<len; i++) {
                 if(this.players[i].getId() == this.atual.getId()) {
