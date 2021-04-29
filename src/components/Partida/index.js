@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom';
 import Missao from '../../components/Missao';
 import Jogada from '../../components/Jogada';
 import PartidaFactory from '../../models/Partidas/PartidaFactory';
@@ -7,6 +8,7 @@ function Partida(props) {
     
     const [ partida, setPartida ] = useState(new PartidaFactory().createPartida(props.match.params.tipo))
     const [ aux, setAux ] = useState(new PartidaFactory().createPartida(props.match.params.tipo));
+    const [ finalPartida, setFinalPartida ] = useState(0);
     
     useEffect(() => {
         attPartida();
@@ -17,12 +19,23 @@ function Partida(props) {
             setAux(new PartidaFactory().createPartida(props.match.params.tipo));
             setAux(partida);
             setPartida(aux);    
+            est();
         }, 1000)
     }
 
     function est() {
-        alert(JSON.stringify(partida.estatistica()));
+        let est = partida.estatistica();
+        if(est[0] != null) {
+            setFinalPartida(1);
+        }
     }
+    
+    if(finalPartida == 1) {
+        return ( 
+            <Redirect to={ { pathname: `/FinalPartida/`, state: { from: props.location, partida: partida} } } />
+        );
+    }
+
 
     return (<>
         <div className="row"> 
