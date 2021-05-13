@@ -37,9 +37,6 @@ class OpcaoJogadaFactory {
             case "seguida":
                 op = new OpcaoJogadaSeguida();
                 break;
-            case "full-house":
-                op = new OpcaoJogadaFullHouse();
-                break;
             case "trinca":
                 op = new OpcaoJogadaTrinca();
                 break;

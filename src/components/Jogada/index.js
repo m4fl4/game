@@ -137,24 +137,20 @@ function Jogada(props) {
                 Fim da jogada!       
             </div>
             {!!opcoesSalvar.length && (<>
-                <div className="card bg-gray-200 w-50">
+                <div className="card w-50">
                     <div className="card-body">
                         {opcoesSalvar.map(op => (<>
                             {!verificaOpcao(op) && (<>
                                 <div className="d-flex flex-column">
                                     <span><b>{op.getTipo()}</b></span>
                                     <span>TOTAL: {op.getTotal()}</span>
+                                    <div className="d-flex flex-row">
+
                                         {op.getTotal() != 0 && (<>
-                                            <button className="mb-2 btn btn-success w-25" onClick={() => missao(op)}>Seleciona</button>
+                                            <button className="mb-2 btn btn-success w-25 mr-2" onClick={() => missao(op)}>Seleciona</button>
                                         </>)}
                                         <button className="mb-2 btn btn-danger w-25" onClick={() => tora(op)}>Tora</button>
-                                </div>
-                                <div className="d-flex flex-row">
-                                    {op.getDados().map(d => (<>
-                                        <div className="ml-1 text-success">
-                                            <Dado dado={d} />
-                                        </div>
-                                    </>))}
+                                    </div>
                                 </div>
                                 <hr />
                             </>)}
