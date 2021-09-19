@@ -26,25 +26,23 @@ function Partida(props) {
     return (<>
         <div className="row"> 
             <div className="col-lg-9 d-flex flex-column mt-2">
-                <div className="d-flex flex-row">
-                    <h1 className="mb-5">
+                <div className="d-flex flex-row mb-4">
+                    <h1 className="mb-2">
                         Turno: <b>{partida.getTurno().getAtual().getCor()} </b>
                     </h1>
                     <h2 className="mt-1 ml-4">
-                        [   
-                            {partida.getTurno().getTotal()[1]} 
-                            /
-                            {partida.getTurno().getTotal()[0]}
-                        ]
+                        {partida.getTurno().getTotal()[1]} 
+                        /
+                        {partida.getTurno().getTotal()[0]}
                     </h2>
                 </div>
-                <div className="d-flex flex-row">
-                    <h1 className="mb-5">
+                <div className="d-flex flex-column mb-4" style={{maxWidth:700}}>
+                    <h1 className="bg-dark text-white p-1">
                         Placar: 
                     </h1>
                     {partida.getTurno().getPlayers().map(p => (<>
-                        <h2 className="mt-1 ml-3">
-                            [ {p.getCor()} : {p.getMissao().getPontuacao()} ]
+                        <h2 className="bg-gray-200 p-1">
+                            {p.getCor()} : {p.getMissao().getPontuacao()}
                         </h2>
                     </>))}
                 </div>

@@ -138,7 +138,7 @@ function Jogada(props) {
             </div>
             {!!opcoesSalvar.length && (<>
                 <div className="card w-50">
-                    <div className="card-body">
+                    <div className="card-body scroll" style={{maxHeight:600}}>
                         {opcoesSalvar.map(op => (<>
                             {!verificaOpcao(op) && (<>
                                 <div className="d-flex flex-column">
